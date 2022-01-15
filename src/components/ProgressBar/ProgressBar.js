@@ -21,6 +21,7 @@ const S = {
     left: 623px;
     top: 170px;
     border-radius: ${p => p.size === "large" ? 8 : 4}px;
+    box-shadow: inset 0 2px 4px ${COLORS.transparentGray35};
     overflow: hidden;
   `,
   InnerBar: styled.div`
