@@ -6,6 +6,12 @@ import { COLORS } from '../../constants';
 
 const heights = { small: 8, medium: 16, large: 24 }
 
+function getRightCornersRadius(value, maxRadius = 4, maxVal = 100) {
+  const minVal = maxVal - maxRadius
+  const radius = (value < minVal) ? 0 : Math.abs(maxVal - value - maxRadius);
+  return `${maxRadius}px ${radius}px ${radius}px ${maxRadius}px`
+}
+
 const S = {
   OuterBar: styled.div`
     height: ${p => heights[p.size]}px;
@@ -22,8 +28,7 @@ const S = {
     background: ${COLORS.primary};
     width: ${p => Math.min(p.value, 100)}%;
     height: 100%;
-    // TODO: it actually *approaches* 4 between, say, 98-100%
-    border-radius: 4px ${p => p.value < 100 ? "0 0" : "4px 4px"} 4px;
+    border-radius: ${p => getRightCornersRadius(p.value)};
   `,
 }
 
