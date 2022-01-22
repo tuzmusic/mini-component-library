@@ -7,12 +7,6 @@ import {COLORS} from '../../constants';
 const heights = {small: 8, medium: 16, large: 24}
 
 const S = {
-  Wrapper: styled.div`
-    display: flex;
-    width: 482px;
-    justify-content: space-between;
-    align-items: center;
-  `,
   OuterBar: styled.div`
     height: ${p => heights[p.size]}px;
     padding: ${p => p.size === "large" && "4px"};
@@ -26,7 +20,7 @@ const S = {
   `,
   InnerBar: styled.div`
     background: ${COLORS.primary};
-    width: ${p => p.value}%;
+    width: ${p => Math.min(p.value, 100)}%;
     height: 100%;
     // TODO: it actually *approaches* 4 between, say, 98-100%
     border-radius: 4px ${p => p.value < 100 ? "0 0" : "4px 4px"} 4px;
@@ -39,18 +33,15 @@ const S = {
 }
 const {InnerBar, OuterBar, Value, Wrapper} = S
 const ProgressBar = ({value, size}) => {
-  const ariaValues = {
+  const ariaProps = {
+    role: "progressbar",
     ariaValueNow: value,
     ariaValueMin: 0,
     ariaValueMax: 100
   }
-  return <Wrapper role={"progressbar"} {...ariaValues}>
-    {/*<Value>{value}</Value>*/}
-
-    <OuterBar size={size}>
-      <InnerBar value={value}/>
-    </OuterBar>
-  </Wrapper>
+  return <OuterBar size={size} {...ariaProps}>
+    <InnerBar value={value}/>
+  </OuterBar>
 };
 
 export default ProgressBar;
