@@ -2,9 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {COLORS} from '../../constants';
+import { COLORS } from '../../constants';
 
-const heights = {small: 8, medium: 16, large: 24}
+const heights = { small: 8, medium: 16, large: 24 }
 
 const S = {
   OuterBar: styled.div`
@@ -25,14 +25,11 @@ const S = {
     // TODO: it actually *approaches* 4 between, say, 98-100%
     border-radius: 4px ${p => p.value < 100 ? "0 0" : "4px 4px"} 4px;
   `,
-  Value: styled.p`
-    &::after {
-      content: "%";
-    }
-  `,
 }
-const {InnerBar, OuterBar, Value, Wrapper} = S
-const ProgressBar = ({value, size}) => {
+
+const { InnerBar, OuterBar } = S
+
+const ProgressBar = ({ value, size }) => {
   const ariaProps = {
     role: "progressbar",
     ariaValueNow: value,
