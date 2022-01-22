@@ -29,7 +29,7 @@ const S = {
     width: ${p => p.value}%;
     height: 100%;
     // TODO: it actually *approaches* 4 between, say, 98-100%
-    border-radius: 4px ${p => p.value < 100 ? "0 0" : "4px 4px" } 4px;
+    border-radius: 4px ${p => p.value < 100 ? "0 0" : "4px 4px"} 4px;
   `,
   Value: styled.p`
     &::after {
@@ -39,7 +39,12 @@ const S = {
 }
 const {InnerBar, OuterBar, Value, Wrapper} = S
 const ProgressBar = ({value, size}) => {
-  return <Wrapper>
+  const ariaValues = {
+    ariaValueNow: value,
+    ariaValueMin: 0,
+    ariaValueMax: 100
+  }
+  return <Wrapper role={"progressbar"} {...ariaValues}>
     {/*<Value>{value}</Value>*/}
 
     <OuterBar size={size}>
