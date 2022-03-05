@@ -8,11 +8,16 @@ import { getDisplayedValue } from './Select.helpers';
 const S = {
   Wrapper: styled.div`
     width: min-content;
+    position: relative;
   `,
   Select: styled.select`
     position: absolute;
     opacity: 0;
-    //visibility: hidden;
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   `,
   FakeSelect: styled.div`
     display: flex;
@@ -54,11 +59,11 @@ const Select = ({ label, value, onChange, children }) => {
   return (
     <S.Wrapper>
       <S.FakeSelect>
+        <p>{displayedValue}</p>
+        <S.Chevron/>
         <S.Select value={value} onChange={onChange}>
           {children}
         </S.Select>
-        <p>{displayedValue}</p>
-        <S.Chevron/>
       </S.FakeSelect>
     </S.Wrapper>
   );
