@@ -16,6 +16,11 @@ const S = {
     background: ${COLORS.transparentGray15};
     color: ${COLORS.gray700};
     border-radius: 8px;
+    transition: color 1s;
+    
+    &:hover {
+      color: black;
+    }
   `,
 }
 
