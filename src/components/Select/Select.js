@@ -33,30 +33,17 @@ const WidthSelect = styled(S.Select)``
 const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
 
-  const option = children.find(({ props }) => props?.value === value)
-  const name = option.props.children
-
   const widthRef = useRef()
-  const _width = widthRef.current && widthRef.current.clientWidth
-  // const _width = widthRef.current && getComputedStyle(widthRef.current).width
-
-  const [width, setWidth] = useState("");
-
-  useEffect(() => {
-    setWidth(_width)
-  }, [_width])
-
-  console.log(width)
-  // debugger
+  const width = widthRef.current && widthRef.current.clientWidth
 
   return (
     <S.Wrapper>
-      {width && <S.Select value={value} onChange={onChange} width={width}>
+      <S.Select value={value} onChange={onChange} width={width}>
         {children}
-      </S.Select>}
+      </S.Select>
       <S.WidthWrapper>
         <WidthSelect value={value} onChange={onChange} ref={widthRef}>
-          <option value={value}>{name}</option>
+          <option value={value}>{displayedValue}</option>
         </WidthSelect>
       </S.WidthWrapper>
     </S.Wrapper>
