@@ -10,42 +10,54 @@ const S = {
     width: min-content;
   `,
   Select: styled.select`
-    width: ${p => p.width}px;
+    position: absolute;
+    visibility: hidden;
+  `,
+  FakeSelect: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+
+    user-select: none;
+
+    white-space: nowrap;
+    width: min-content;
+
     font-size: 16px;
     line-height: 18.76px;
     padding: 12px 16px;
 
     background: ${COLORS.transparentGray15};
-    color: ${COLORS.gray700};
     border-radius: 8px;
-    transition: color 1s;
 
-    &:hover {
+    color: ${COLORS.gray700};
+    transition: color 1s;
+    :hover {
       color: black;
     }
+
+    :focus-within {
+      outline: solid medium Highlight;
+    }
   `,
-  WidthWrapper: styled.div`
+  Chevron: styled(Icon).attrs({ id: "chevron-down" })`
+    color: currentColor;
   `,
 }
-
-const WidthSelect = styled(S.Select)``
 
 const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
 
-  const widthRef = useRef()
-  const width = widthRef.current && widthRef.current.clientWidth
-
   return (
     <S.Wrapper>
-      <S.Select value={value} onChange={onChange} width={width}>
-        {children}
-      </S.Select>
-      <S.WidthWrapper>
-        <WidthSelect value={value} onChange={onChange} ref={widthRef}>
-          <option value={value}>{displayedValue}</option>
-        </WidthSelect>
-      </S.WidthWrapper>
+      <S.FakeSelect>
+        <S.Select value={value} onChange={onChange}>
+          {children}
+        </S.Select>
+        <p>{displayedValue}</p>
+        <S.Chevron/>
+      </S.FakeSelect>
     </S.Wrapper>
   );
 };
