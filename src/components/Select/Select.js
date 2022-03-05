@@ -11,7 +11,8 @@ const S = {
   `,
   Select: styled.select`
     position: absolute;
-    visibility: hidden;
+    opacity: 0;
+    //visibility: hidden;
   `,
   FakeSelect: styled.div`
     display: flex;
@@ -33,6 +34,7 @@ const S = {
 
     color: ${COLORS.gray700};
     transition: color 1s;
+
     :hover {
       color: black;
     }
