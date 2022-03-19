@@ -4,6 +4,16 @@ import { COLORS } from '../../constants';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
+const sizes = {
+  small: {
+    fontSize: 14,
+    iconSize: 11
+  },
+  large: {
+    fontSize: 18,
+    iconSize: 16
+  }
+}
 const S = {
   Wrapper: styled.div`
     border-bottom: solid 1px black;
@@ -13,14 +23,17 @@ const S = {
   `,
   Input: styled.input`
     color: ${COLORS.gray700};
-    font-size: 14px;
+    font-size: ${p => sizes[p.size].fontSize}px;
     font-weight: 700;
     border: none;
-    
+
     &::placeholder {
       color: ${COLORS.gray500};
       font-weight: 400;
     }
+  `,
+  IconWrapper: styled.div`
+    margin-bottom: -2px;
   `,
 }
 
@@ -30,11 +43,10 @@ const IconInput = ({
                      width = 250,
                      size,
                      placeholder,
-                   }) => {
-  return <S.Wrapper width={width}>
-    <Icon id={icon}/>
-    <S.Input placeholder="Search..."/>
+                   }) =>
+  <S.Wrapper width={width}>
+    <Icon id={icon} size={sizes[size].iconSize}/>
+    <S.Input size={size} placeholder={placeholder}/>
   </S.Wrapper>;
-};
 
 export default IconInput;

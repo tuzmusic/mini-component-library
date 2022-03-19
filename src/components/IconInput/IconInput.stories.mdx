@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs/blocks';
 import IconInput from './IconInput';
+import styled from "styled-components";
 
 <Meta
   title="IconInput"
@@ -30,7 +31,16 @@ import IconInput from './IconInput';
   }}
 />
 
-export const Template = (args) => <IconInput {...args} />;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+`;
+
+export const Template = (args) => <Wrapper>
+  <IconInput {...args} size={"small"}/>
+  <IconInput {...args} size={"large"}/>
+</Wrapper>;
 
 # IconInput
 
