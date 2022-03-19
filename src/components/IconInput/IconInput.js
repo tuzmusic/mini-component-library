@@ -20,13 +20,14 @@ const S = {
     width: ${p => p.width}px;
     display: flex;
     gap: 12px;
+    align-items: center;
   `,
   Input: styled.input`
     color: ${COLORS.gray700};
     font-size: ${p => sizes[p.size].fontSize}px;
     font-weight: 700;
     border: none;
-
+    
     &::placeholder {
       color: ${COLORS.gray500};
       font-weight: 400;
