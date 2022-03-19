@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../../constants';
 import Icon from '../Icon';
@@ -21,15 +21,16 @@ const S = {
     align-items: center;
     padding: 2px;
     color: ${COLORS.gray700};
-
+    width: ${p => p.width}px;
     :hover {
       color: black;
     }
-    
+
     :focus-within {
       outline: solid medium Highlight;
       outline-offset: 2px;
     }
+
     border-bottom: solid 1px currentColor;
   `,
   Input: styled.input`
@@ -55,10 +56,15 @@ const IconInput = ({
                      width = 250,
                      size,
                      placeholder,
-                   }) =>
-  <S.Wrapper width={width}>
-    <Icon id={icon} size={sizes[size].iconSize}/>
-    <S.Input size={size} placeholder={placeholder}/>
-  </S.Wrapper>
+                   }) => {
+  const inputRef = useRef()
+
+  return <S.Wrapper width={width}>
+    <Icon id={icon} size={sizes[size].iconSize} onClick={() => {
+      inputRef.current?.focus()
+    }}/>
+    <S.Input size={size} placeholder={placeholder} ref={inputRef}/>
+  </S.Wrapper>;
+}
 
 export default IconInput;
