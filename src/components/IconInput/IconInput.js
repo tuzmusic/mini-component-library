@@ -24,6 +24,7 @@ const S = {
     padding: 2px;
     color: ${COLORS.gray700};
     width: ${p => p.width}px;
+
     :hover {
       color: black;
     }
@@ -50,6 +51,13 @@ const S = {
       font-weight: 400;
     }
   `,
+  HiddenLabel: styled.label`
+    width: 0;
+    visibility: hidden;
+  `,
+  InputWrapper: styled.div`
+    display: flex;
+  `,
 }
 
 const IconInput = ({
@@ -65,7 +73,11 @@ const IconInput = ({
     <Icon id={icon} size={sizes[size].iconSize} onClick={() => {
       inputRef.current?.focus()
     }}/>
-    <S.Input size={size} placeholder={placeholder} ref={inputRef}/>
+
+    <S.InputWrapper>
+      <S.HiddenLabel htmlFor="input">{label}</S.HiddenLabel>
+      <S.Input id="input" size={size} placeholder={placeholder} ref={inputRef}/>
+    </S.InputWrapper>
   </S.Wrapper>;
 }
 
