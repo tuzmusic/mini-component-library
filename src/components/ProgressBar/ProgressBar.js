@@ -37,9 +37,9 @@ const { InnerBar, OuterBar } = S
 const ProgressBar = ({ value, size }) => {
   const ariaProps = {
     role: "progressbar",
-    ariaValueNow: value,
-    ariaValueMin: 0,
-    ariaValueMax: 100
+    "aria-valuenow": value,
+    "aria-valuemin": 0,
+    "aria-valuemax": 100
   }
   return <OuterBar size={size} {...ariaProps}>
     <InnerBar value={value}/>
