@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { COLORS } from '../../constants';
 
-const heights = { small: 8, medium: 16, large: 24 }
+const heights = { small: 8, medium: 12, large: 24 }
 
 const S = {
   OuterBar: styled.div`
