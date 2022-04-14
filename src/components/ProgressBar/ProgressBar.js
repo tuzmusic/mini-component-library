@@ -11,9 +11,15 @@ const S = {
     height: ${p => heights[p.size]}px;
     padding: ${p => p.size === "large" && "4px"};
     background: ${COLORS.transparentGray15};
-    border-radius: ${p => p.size === "large" ? 8 : 4}px;
     box-shadow: inset 0 2px 4px ${COLORS.transparentGray35};
+    // josh's video sets this at the end, but I noticed they were different in the figma! Ha! 
+    border-radius: ${p => p.size === "large" ? 8 : 4}px;
+  `,
+  RoundingWrapper: styled.div`
     overflow: hidden;
+    border-radius: ${p => p.size === "large" ? 8 : 4}px;
+    width: 100%;
+    height: 100%;
   `,
   InnerBar: styled.div`
     background: ${COLORS.primary};
@@ -23,7 +29,6 @@ const S = {
   `,
 }
 
-const { InnerBar, OuterBar } = S
 
 const ProgressBar = ({ value, size, ...props }) => {
   const ariaProps = {
@@ -32,9 +37,11 @@ const ProgressBar = ({ value, size, ...props }) => {
     "aria-valuemin": 0,
     "aria-valuemax": 100
   }
-  return <OuterBar size={size} {...ariaProps} {...props}>
-    <InnerBar value={value}/>
-  </OuterBar>
+  return <S.OuterBar size={size} {...ariaProps} {...props}>
+    <S.RoundingWrapper value={value}>
+      <S.InnerBar value={value}/>
+    </S.RoundingWrapper>
+  </S.OuterBar>
 };
 
 export default ProgressBar;

@@ -11,7 +11,7 @@ const ProgressBarGallery = ({value}) => {
   return <Wrapper>
     <ProgressBar value={value} size={"large"}/>
     <ProgressBar value={value} size={"medium"}/>
-    <ProgressBar value={value} size={"small"} style={{height: 12, width: 100}}/>
+    <ProgressBar value={value} size={"small"} style={{width: 100}}/>
   </Wrapper>
 };
 
