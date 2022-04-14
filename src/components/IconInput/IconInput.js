@@ -7,17 +7,19 @@ import VisuallyHidden from '../VisuallyHidden';
 const sizes = {
   small: {
     fontSize: 14,
-    iconSize: 11
+    gap: 12,
+    iconSize: 11,
   },
   large: {
     fontSize: 18,
+    gap: 17,
     iconSize: 16
   }
 }
 const S = {
   Wrapper: styled.div`
     display: flex;
-    gap: 12px;
+    gap: ${p => sizes[p.size].gap}px;
     align-items: center;
     padding: 2px;
     color: ${COLORS.gray700};
@@ -59,7 +61,7 @@ const IconInput = ({
                    }) => {
   const inputRef = useRef()
 
-  return <S.Wrapper width={width}>
+  return <S.Wrapper width={width} size={size}>
     <Icon id={icon} size={sizes[size].iconSize} onClick={() => {
       inputRef.current?.focus()
     }}/>
