@@ -11,9 +11,6 @@ const S = {
     height: ${p => heights[p.size]}px;
     padding: ${p => p.size === "large" && "4px"};
     background: ${COLORS.transparentGray15};
-    width: 370px;
-    left: 623px;
-    top: 170px;
     border-radius: ${p => p.size === "large" ? 8 : 4}px;
     box-shadow: inset 0 2px 4px ${COLORS.transparentGray35};
     overflow: hidden;
@@ -28,14 +25,14 @@ const S = {
 
 const { InnerBar, OuterBar } = S
 
-const ProgressBar = ({ value, size }) => {
+const ProgressBar = ({ value, size, ...props }) => {
   const ariaProps = {
     role: "progressbar",
     "aria-valuenow": value,
     "aria-valuemin": 0,
     "aria-valuemax": 100
   }
-  return <OuterBar size={size} {...ariaProps}>
+  return <OuterBar size={size} {...ariaProps} {...props}>
     <InnerBar value={value}/>
   </OuterBar>
 };
