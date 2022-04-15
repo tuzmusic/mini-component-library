@@ -7,13 +7,13 @@ import VisuallyHidden from '../VisuallyHidden';
 const sizes = {
   small: {
     fontSize: 14,
-    gap: 12,
-    iconSize: 11,
+    gap: 8,
+    iconSize: 16,
   },
   large: {
     fontSize: 18,
-    gap: 17,
-    iconSize: 16
+    gap: 12,
+    iconSize: 24
   }
 }
 const S = {
@@ -69,11 +69,11 @@ const IconInput = ({
                    }) => {
 
   // if we have multiple inputs they need to have unique ids
-  const id = Math.random()
+  const id = `${label}-${Math.random()}`
 
   return <S.Wrapper width={width} size={size}>
     <label htmlFor={id}>
-      <Icon id={icon} size={sizes[size].iconSize}/>
+      <Icon strokeWidth={2} id={icon} size={sizes[size].iconSize}/>
       <VisuallyHidden>{label}</VisuallyHidden>
     </label>
 
