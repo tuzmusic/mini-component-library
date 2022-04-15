@@ -67,17 +67,17 @@ const IconInput = ({
                      size,
                      placeholder,
                    }) => {
-  const inputRef = useRef()
+
+  // if we have multiple inputs they need to have unique ids
+  const id = Math.random()
 
   return <S.Wrapper width={width} size={size}>
-    <Icon id={icon} size={sizes[size].iconSize} onClick={() => {
-      inputRef.current?.focus()
-    }}/>
+    <label htmlFor={id}>
+      <Icon id={icon} size={sizes[size].iconSize}/>
+      <VisuallyHidden>{label}</VisuallyHidden>
+    </label>
 
-    <S.InputWrapper>
-      <S.HiddenLabel htmlFor="input">{label}</S.HiddenLabel>
-      <S.Input id="input" size={size} placeholder={placeholder} ref={inputRef}/>
-    </S.InputWrapper>
+    <S.Input id={id} size={size} placeholder={placeholder}/>
   </S.Wrapper>;
 }
 
