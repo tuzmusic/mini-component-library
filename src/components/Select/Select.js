@@ -10,7 +10,7 @@ const S = {
     width: min-content;
     position: relative;
   `,
-  Select: styled.select`
+  NativeSelect: styled.select`
     position: absolute;
     opacity: 0;
     
@@ -48,7 +48,7 @@ const S = {
       outline: solid medium Highlight;
     }
   `,
-  Chevron: styled(Icon).attrs({ id: "chevron-down" })`
+  Chevron: styled(Icon).attrs({ id: "chevron-down", strokeWidth: 2, size: 24 })`
     color: currentColor;
   `,
 }
@@ -61,9 +61,9 @@ const Select = ({ label, value, onChange, children }) => {
       <S.FakeSelect>
         <p>{displayedValue}</p>
         <S.Chevron/>
-        <S.Select value={value} onChange={onChange}>
+        <S.NativeSelect value={value} onChange={onChange}>
           {children}
-        </S.Select>
+        </S.NativeSelect>
       </S.FakeSelect>
     </S.Wrapper>
   );
