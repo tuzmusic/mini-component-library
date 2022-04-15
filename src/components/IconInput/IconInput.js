@@ -9,11 +9,13 @@ const sizes = {
     fontSize: 14,
     gap: 8,
     iconSize: 16,
+    thickness: 1,
   },
   large: {
     fontSize: 18,
     gap: 12,
-    iconSize: 24
+    iconSize: 24,
+    thickness: 2,
   }
 }
 const S = {
@@ -34,11 +36,11 @@ const S = {
       outline-offset: 2px;
     }
 
-    border-bottom: solid 1px currentColor;
+    border-bottom: solid ${p => sizes[p.size].thickness}px currentColor;
   `,
   Input: styled.input`
     color: currentColor;
-    font-size: ${p => sizes[p.size].fontSize}px;
+    font-size: ${p => sizes[p.size].fontSize / 16}rem;
     font-weight: 700;
     border: none;
 
